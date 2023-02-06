@@ -1,0 +1,18 @@
+version: 2.1
+orbs:
+ cypress: cypress-io/cypress@1
+workflows:
+ build_and_test:
+  jobs:
+   - cypress/run:
+jobs:
+ run_tests:
+  executor: cypress/executor
+  steps:
+   - checkout
+   - run:
+     name: Install dependencies
+     command: npm ci
+   - cypress/run:
+     start: npm start
+     browser: chrome
